@@ -1,0 +1,86 @@
+/* old color: #8c784e */
+
+
+* {
+  font-size: 16px;
+  font-family: JetBrainsMono NF;
+  border: none;
+  border-radius: 0px;
+}
+
+window#waybar {
+  background: alpha(#282828, 0.5);
+}
+
+
+
+.modules-left {
+  font-weight: bold;
+}
+
+
+
+#custom-distro {
+  font-size: 22px;
+  color: #458588;
+  padding-left: 5px;
+  padding-right: 10px;
+  margin: 0px;
+  margin-left: 0px;
+  margin-right: 5px;
+  border-radius: 8px;
+}
+
+
+#workspaces {
+  border-left: 0px solid #4d4c4c;
+  border-right: 0px solid #4d4c4c;
+  margin-left: 0px;
+}
+
+#workspaces button {
+  font-size: 3px;
+  color: #4d4c4c;
+  padding: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#workspaces button.active {
+  background: alpha(#daa833, 0.4);
+  border: 2px solid #daa833;
+  color: #daa833;
+  padding: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 2px #458588;
+}
+
+#window {
+  color: #daa833;
+}
+
+
+
+
+
+#clock {
+  color: #daa833;
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+  margin-right: 10px;
+}
+
+
+
+
+
+
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
