@@ -2,79 +2,65 @@
 
 
 * {
-  font-size: 16px;
-  font-family: JetBrainsMono NF;
+  font-size: 15px;
   border: none;
-  border-radius: 0px;
+  border-radius: 0px;  
+  font-family: JetBrainsMono NF;
+  font-weight: bold;
+  min-height: 20px;
 }
 
 window#waybar {
   background: alpha(#282828, 0.5);
 }
 
-
-
+/*
 .modules-left {
-  font-weight: bold;
 }
 
-
-
-#custom-distro {
-  font-size: 22px;
-  color: #458588;
-  padding-left: 5px;
-  padding-right: 10px;
-  margin: 0px;
-  margin-left: 0px;
-  margin-right: 5px;
-  border-radius: 8px;
+.modules-center {
 }
 
-
-#workspaces {
-  border-left: 0px solid #4d4c4c;
-  border-right: 0px solid #4d4c4c;
-  margin-left: 0px;
+.modules-right {
 }
+*/
+
+/*
+#workspaces {  
+}
+*/
 
 #workspaces button {
-  font-size: 3px;
   color: #4d4c4c;
-  padding: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#workspaces button:hover {
+  background: alpha(#282828, 0.5);
   padding-left: 30px;
   padding-right: 30px;
 }
 
 #workspaces button.active {
   background: alpha(#daa833, 0.4);
-  border: 2px solid #daa833;
   color: #daa833;
-  padding: 0px;
   padding-left: 30px;
   padding-right: 30px;
-  border: 2px #458588;
 }
 
 #window {
   color: #daa833;
 }
 
-
-
-
-
 #clock {
-  color: #daa833;
-  font-weight: bold;
-  padding: 0px;
-  margin: 0px;
-  margin-right: 10px;
+  color: #ebdbb2;
 }
 
-
-
-
+#pulseaudio {
+  color: #ebdbb2;
+  margin-right: 10px;
+}
 
 
 

@@ -1,8 +1,8 @@
 {
     "layer": "bottom",
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["clock#2","clock"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio"],
     
     "custom/distro": {
         "format":"󱄅"
@@ -32,10 +32,17 @@
     },
 
     "clock": {
-        "format": "{:%H:%M}"
+        "format": "{:%a %d %b - %H:%M}"
     },
 
-    "clock#2": {
-        "format": "{:%a %d %b}"
+    "pulseaudio": {
+        "format": "VOL: {volume}% ",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "ignored-sinks": ["Easy Effects Sink"]
     }
 }
