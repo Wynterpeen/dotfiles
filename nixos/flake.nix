@@ -3,22 +3,40 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
-  };
+    hyprland.url = "github:hyprwm/Hyprland";
+    #hyprland-plugins = {
+    #  url = "github:hyprwm/hyprland-plugins";
+    #  inputs.hyprland.follows = "hyprland";
+    #};
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
+    };
 
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+  };
   outputs = inputs@{ self, nixpkgs, ... }:
   let
     configuration = { pkgs, config, ... }: {
-      
-      systemd.extraConfig = "DefaultLimitNOFILE=8192:524288";
+
+      # systemd.settings.Manager = "DefaultLimitNOFILE=8192:524288";
       nixpkgs.overlays = [ inputs.millennium.overlays.default ];
       imports =
       [
         ./hardware-configuration.nix
         ./modules/hyprland.nix
-        ./modules/steam.nix
+	      ./modules/steam.nix
       ];
       hardware.enableAllFirmware = true;
+      hardware.graphics.enable32Bit = true;
+      services.lact.enable = true;
+
+      services.xserver.videoDrivers = [ "amdgpu" ];
 
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -31,14 +49,14 @@
         fastfetch
         mangohud
         vesktop
-        lutris
+	      bottles
         syncthing
         vscode
-        wireshark-qt
+        wireshark
         swww #wallpaper deamon
         kitty
-        rofi-wayland
-        protonup
+        rofi
+        protonup-ng
         networkmanagerapplet
         hyprland-qtutils
         dunst
@@ -53,6 +71,16 @@
         keepassxc
         r2modman
         protontricks
+        davinci-resolve
+        ffmpeg
+        gnome-boxes
+        bibata-cursors
+        gruvbox-plus-icons
+	      hypridle
+        deadlock-mod-manager
+	      feishin
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+        quickshell
       ];
       fonts.packages = with pkgs; [
         nerd-fonts.jetbrains-mono
@@ -60,7 +88,7 @@
       
       # Bootloader
       boot.loader.grub = {
-        enable = true;
+        enable = true;  
         efiSupport = true;
         device = "nodev";
       };
@@ -92,17 +120,17 @@
         jack.enable = true;
       };  
 
-      users.users. = {
+      users.users.dylan = {
         isNormalUser = true;
-        description = "";
+        description = "Dylan Jansen";
         extraGroups = [ "networkmanager" "wheel" "audio" ];
       };
 
       programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
+        enable = true;
+        enableCompletion = true;
+        autosuggestions.enable = true;
+        syntaxHighlighting.enable = true;
         shellAliases = {
           rebuild = "sudo nixos-rebuild switch";
         };
@@ -131,7 +159,8 @@
   in
   {
     nixosConfigurations = {
-      terra = nixpkgs.lib.nixosSystem {
+      Terra = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [ configuration ];
       };

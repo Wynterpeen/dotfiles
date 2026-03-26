@@ -2,7 +2,7 @@
 {
     programs.steam = {
         enable = true;
-        package = pkgs.steam-millennium;
+	    package = pkgs.millennium-steam; 
     };
     programs.gamemode.enable = true;
     programs.gamescope.enable = true;
